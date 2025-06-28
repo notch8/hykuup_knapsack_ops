@@ -21,6 +21,13 @@ spec:
         releaseName: hykuup-knapsack-argo
         valueFiles:
           - $ops/argo/values.yaml
+  ignoreDifferences:
+    # This secret from the Hyrax chart uses randAlphaNum, which causes
+    # a false out-of-sync status. This secret is superseded by our
+    # hykuup-app-secrets secret, so we can safely ignore it.
+    - group: ""
+      kind: Secret
+      name: hykuup-knapsack-argo-hyrax
   syncPolicy:
     # automated:
     #   prune: true
