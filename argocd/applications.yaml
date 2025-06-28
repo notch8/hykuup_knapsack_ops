@@ -1,0 +1,30 @@
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: hykuup-argo
+  namespace: argocd
+spec:
+  destination:
+    namespace: hykuup-knapsack-argo
+    # Replace with "in-cluster" for local testing
+    name: r2-friends-cluster
+  project: hykuup
+  sources:
+    - repoURL: https://github.com/notch8/hykuup_knapsack_ops.git
+      targetRevision: main
+      path: argo/manifests
+      ref: ops
+    - repoURL: ghcr.io/samvera/charts
+      chart: hyrax
+      targetRevision: 3.6.0
+      helm:
+        releaseName: hykuup-knapsack-argo
+        valueFiles:
+          - $ops/argo/values.yaml
+  syncPolicy:
+    # automated:
+    #   prune: true
+    #   selfHeal: true
+    syncOptions:
+      - CreateNamespace=true
+# TODO: append Applications for other envs (staging, friends, prod)

@@ -1,0 +1,24 @@
+apiVersion: argoproj.io/v1alpha1
+kind: AppProject
+metadata:
+  name: hykuup
+  namespace: argocd
+spec:
+  destinations:
+    - namespace: "hykuup-knapsack-argo"
+      name: "r2-friends-cluster"
+    # TODO: Uncomment when ready to deploy to friends using Argo
+    # - namespace: "hykuup-knapsack-friends"
+    #   name: "r2-friends-cluster"
+    # TODO: Uncomment when ready to deploy to staging using Argo
+    # - namespace: "hykuup-knapsack-staging"
+    #   name: "r2-friends-cluster"
+    # TODO: Uncomment when ready to deploy to prod using Argo
+    # - namespace: "hykuup-knapsack-production"
+    #   name: "r2-production-cluster"
+    # Uncomment for local testing
+    # - namespace: "*"
+    #   name: "in-cluster"
+  sourceRepos:
+    - https://github.com/notch8/hykuup_knapsack_ops.git
+    - ghcr.io/samvera/charts
