@@ -28,6 +28,8 @@ spec:
     - group: ""
       kind: Secret
       name: hykuup-knapsack-argo-hyrax
+      jsonPointers:
+        - /data
   syncPolicy:
     automated:
       prune: true
