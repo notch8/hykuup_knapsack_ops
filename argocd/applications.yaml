@@ -29,9 +29,9 @@ spec:
       kind: Secret
       name: hykuup-knapsack-argo-hyrax
   syncPolicy:
-    # automated:
-    #   prune: true
-    #   selfHeal: true
+    automated:
+      prune: true
+      selfHeal: true
     syncOptions:
       - CreateNamespace=true
 # TODO: append Applications for other envs (staging, friends, prod)
