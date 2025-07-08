@@ -70,9 +70,10 @@ spec:
       jsonPointers:
         - /data
   syncPolicy:
-    automated:
-      prune: true
-      selfHeal: true
+    # TODO: uncomment after visually comparing manifest diffs in ArgoCD UI
+    # automated:
+    #   prune: true
+    #   selfHeal: true
     syncOptions:
       - CreateNamespace=true
 # TODO: append Applications for other envs (friends, prod)
