@@ -2,7 +2,7 @@ replicaCount: 2
 
 image:
   repository: ghcr.io/notch8/hykuup_knapsack
-  tag: 775bb405
+  tag: 3b5aacd6
 
 resources:
   limits:
@@ -198,7 +198,7 @@ worker:
   replicaCount: 1
   image:
     repository: ghcr.io/notch8/hykuup_knapsack/worker
-    tag: 775bb405
+    tag: 3b5aacd6
   extraVolumeMounts: *volMounts
   extraEnvFrom: *extraEnvFrom
   extraEnvVars: *envVars
