@@ -1,3 +1,4 @@
+# TODO: delete this file after spinning down "argo" test env
 replicaCount: 2
 
 image:
