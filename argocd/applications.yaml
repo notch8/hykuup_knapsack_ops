@@ -36,4 +36,43 @@ spec:
       selfHeal: true
     syncOptions:
       - CreateNamespace=true
-# TODO: append Applications for other envs (staging, friends, prod)
+---
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: hykuup-staging
+  namespace: argocd
+spec:
+  destination:
+    namespace: hykuup-knapsack-staging
+    # Replace with "in-cluster" for local testing
+    name: r2-friends-cluster
+  project: hykuup
+  sources:
+    - repoURL: https://github.com/notch8/hykuup_knapsack_ops.git
+      targetRevision: main
+      path: staging/manifests
+      ref: ops
+    - repoURL: ghcr.io/samvera/charts
+      chart: hyrax
+      targetRevision: 3.6.0
+      helm:
+        releaseName: hykuup-knapsack-staging
+        valueFiles:
+          - $ops/staging/values.yaml
+  ignoreDifferences:
+    # This secret from the Hyrax chart uses randAlphaNum, which causes
+    # a false out-of-sync status. This secret is superseded by our
+    # hykuup-app-secrets secret, so we can safely ignore it.
+    - group: ""
+      kind: Secret
+      name: hykuup-knapsack-staging-hyrax
+      jsonPointers:
+        - /data
+  syncPolicy:
+    automated:
+      prune: true
+      selfHeal: true
+    syncOptions:
+      - CreateNamespace=true
+# TODO: append Applications for other envs (friends, prod)
