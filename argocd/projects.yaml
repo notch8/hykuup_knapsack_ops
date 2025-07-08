@@ -10,9 +10,8 @@ spec:
     # TODO: Uncomment when ready to deploy to friends using Argo
     # - namespace: "hykuup-knapsack-friends"
     #   name: "r2-friends-cluster"
-    # TODO: Uncomment when ready to deploy to staging using Argo
-    # - namespace: "hykuup-knapsack-staging"
-    #   name: "r2-friends-cluster"
+    - namespace: "hykuup-knapsack-staging"
+      name: "r2-friends-cluster"
     # TODO: Uncomment when ready to deploy to prod using Argo
     # - namespace: "hykuup-knapsack-production"
     #   name: "r2-production-cluster"
